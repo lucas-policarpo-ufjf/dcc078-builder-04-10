@@ -7,7 +7,7 @@ class AlbumBuilderTest {
     void shouldThrowsWithInvalidName() {
         try {
             AlbumBuilder albumBuilder = new AlbumBuilder();
-            Album album = albumBuilder.setDuration(10)
+            albumBuilder.setDuration(10)
                     .setArtist("Artista")
                     .setAverageRating(0.0F)
                     .setDuration(10)
@@ -19,10 +19,25 @@ class AlbumBuilderTest {
     }
 
     @Test
+    void shouldThrowsWithInvalidArtist() {
+        try {
+            AlbumBuilder albumBuilder = new AlbumBuilder();
+            albumBuilder.setDuration(10)
+                    .setName("Nome")
+                    .setAverageRating(0.0F)
+                    .setDuration(10)
+                    .build();
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertEquals("Artista inválido!", e.getMessage());
+        }
+    }
+
+    @Test
     void shouldThrowsWithInvalidDuration() {
         try {
             AlbumBuilder albumBuilder = new AlbumBuilder();
-            Album album = albumBuilder.setDuration(10)
+            albumBuilder.setDuration(10)
                     .setArtist("Artista")
                     .setName("Nome")
                     .setAverageRating(0.0F)
@@ -38,7 +53,7 @@ class AlbumBuilderTest {
     void shouldThrowsWithNegativeDuration() {
         try {
             AlbumBuilder albumBuilder = new AlbumBuilder();
-            Album album = albumBuilder.setDuration(10)
+            albumBuilder.setDuration(10)
                     .setArtist("Artista")
                     .setName("Nome")
                     .setAverageRating(0.0F)
@@ -54,7 +69,7 @@ class AlbumBuilderTest {
     void shouldThrowsWithInvalidMaxLimitAverageRating() {
         try {
             AlbumBuilder albumBuilder = new AlbumBuilder();
-            Album album = albumBuilder.setDuration(10)
+            albumBuilder.setDuration(10)
                     .setArtist("Artista")
                     .setName("Nome")
                     .setAverageRating(15.0F)
@@ -69,7 +84,7 @@ class AlbumBuilderTest {
     void shouldThrowsWithInvalidMinLimitAverageRating() {
         try {
             AlbumBuilder albumBuilder = new AlbumBuilder();
-            Album album = albumBuilder.setDuration(10)
+            albumBuilder.setDuration(10)
                     .setArtist("Artista")
                     .setName("Nome")
                     .setAverageRating(-15.0F)
